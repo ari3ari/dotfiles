@@ -1,0 +1,64 @@
+"http://msrx9.bitbucket.org/blog/html/2012/07/25/vi_tips_esc_2_cj_.html
+imap <c-j> <esc>
+
+"http://qiita.com/Shaula/items/0264fe6fb436f2525702
+set clipboard=unnamed
+inoremap <C-r>0 <C-r>+
+
+"http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+nnoremap sn gt
+nnoremap sp gT
+nnoremap sr <C-w>r
+nnoremap s= <C-w>=
+nnoremap sw <C-w>w
+nnoremap so <C-w>_<C-w>|
+nnoremap sO <C-w>=
+nnoremap sN :<C-u>bn<CR>
+nnoremap sP :<C-u>bp<CR>
+nnoremap st :<C-u>tabnew<CR>
+nnoremap sT :<C-u>Unite tab<CR>
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sq :<C-u>q<CR>
+nnoremap sQ :<C-u>bd<CR>
+nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
+nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+
+" 括弧入力時に対応する括弧を表示 (noshowmatch:表示しない)
+set showmatch
+" バックスペースでインデントや改行を削除できるようにする
+set backspace=indent,eol,start
+" タブや改行を表示 (list:表示)
+set list
+" どの文字でタブや改行を表示するかを設定
+set listchars=tab:>-,extends:<,trail:-,eol:<
+" 検索時に大文字小文字を無視 (noignorecase:無視しない)
+set ignorecase
+" 大文字小文字の両方が含まれている場合は大文字小文字を区別
+set smartcase
+" ESCでIMEを確実にOFF vsでは効かない
+"inoremap <ESC> <ESC>:set iminsert=0<CR>
+
+" ESCでIMEの制御 vsでは効かない
+if has('multi_byte_ime') || has('xim')
+  " IME ON時のカーソルの色を設定(設定例:紫)
+  highlight CursorIM guibg=Purple guifg=NONE
+  " 挿入モード・検索モードでのデフォルトのIME状態設定
+  set iminsert=0 imsearch=0
+  if has('xim') && has('GUI_GTK')
+    " XIMの入力開始キーを設定:
+    " 下記の s-space はShift+Spaceの意味でkinput2+canna用設定
+    "set imactivatekey=s-space
+  endif
+  " 挿入モードでのIME状態を記憶させない場合、次行のコメントを解除
+  "inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+endif
